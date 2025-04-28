@@ -31,7 +31,7 @@ export const register = async(req,res) =>{
 // When setting cookies in your auth controller
 res.cookie('authToken', token, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'development', // true in development
+    secure: process.env.NODE_ENV, // true in development
     sameSite: 'lax', // or 'strict' in development
     maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
 });
@@ -94,7 +94,7 @@ const token = jwt.sign(
 // When setting cookies in your auth controller
 res.cookie('authToken', token, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'development', // true in development
+    secure: process.env.NODE_ENV, // true in development
     sameSite: 'lax', // or 'strict' in development
     maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
 });
@@ -113,8 +113,8 @@ export const logout = async (req,res) => {
     try {
         res.clearCookie('token', {
             httpOnly: true,
-            secure: process.env.NODE_ENV == 'development',
-            sameSite: process.env.NODE_ENV == 'development'
+            secure: process.env.NODE_ENV,
+            sameSite: process.env.NODE_ENV,
         })
 
         return res.json({success: true, message: "User Logged Out"})
