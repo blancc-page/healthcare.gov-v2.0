@@ -78,7 +78,8 @@ const onSubmitHandler = async (e) => {
                 className='bg-transparent outline-none p-3' type="password" placeholder='Password' required />
             </div>
 
-            <p onClick={() => navigate('/reset-password')} className='mb-4 text-indigo-500 cursor-pointer'>Forgot Password?</p>
+            {state === 'Sign Up' ?
+             null : <p onClick={() => navigate('/reset-password')} className='mb-4 text-indigo-500 cursor-pointer'>Forgot Password?</p> }
 
             <button className='text-white font-medium w-full py2.5 rounded-full bg-gradient-to-r from-indigo-500 to-indigo-900 p-3'>{state}</button>
         </form>
