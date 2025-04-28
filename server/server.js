@@ -11,7 +11,7 @@ import mongoose from "mongoose";
 const app = express();
 const port = process.env.PORT || 4000;
 
-const allowedOrigins = ['https://healthcare-gov-frontend.onrender.com/']
+const allowedOrigins = ['http://localhost:5173','https://healthcare-gov-frontend.onrender.com', 'https://healthcare-gov-backend.onrender.com/', 'http://localhost:4000/']
 
 app.use(express.json());
 app.use(cookieParser());
@@ -19,9 +19,7 @@ app.use(cors({origin: allowedOrigins, credentials: true}));
 
   
   // MongoDB Connection
-  mongoose.connect(process.env.MONGODB_URI)
-    .then(() => console.log('Connected to MongoDB'))
-    .catch(err => console.error(err));
+  connectDB();
 
 // API Endpoints
 app.get('/',(req, res)=> res.send("API Working!"));

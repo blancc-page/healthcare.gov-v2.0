@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext,useEffect } from 'react'
 import { assets } from '../assets/assets'
 import { useNavigate } from 'react-router-dom'
 import { AppContext } from '../context/AppContext'
@@ -15,7 +15,7 @@ const sendVerificationOtp = async () => {
   try {
     axios.defaults.withCredentials = true
 
-    const { data } = await axios.post(backendUrl + '/api/auth/send-verify-otp')
+    const { data } = await axios.post(backendUrl + 'api/auth/send-verify-otp')
 
     if(data.success){
       toast.success(data.message)
@@ -31,17 +31,29 @@ const sendVerificationOtp = async () => {
 
 const logout = async () => {
   try {
-    axios.defaults.withCredentials = true
-    const { data } = await axios.post(backendUrl + '/api/auth/logout')
-    data.sucsess && setIsLoggedIn(false)
-    data.success && setUserData(false)
-    navigate('/')
+    axios.defaults.withCredentials = true;
+    const { data } = await axios.post(backendUrl + 'api/auth/logout');
+
+    if (data.success) { 
+      // Clear any localStorage/sessionStorage
+      localStorage.removeItem('user'); 
+      localStorage.removeItem('token'); 
+      sessionStorage.clear(); 
+
+      // Update state properly
+      setIsLoggedIn(false);
+      setUserData(null);
+
+      navigate('/');
+      toast.success('Logged Out');
+    } else {
+      toast.error('Logout failed');
+    }
 
   } catch (error) {
-    toast.error(error.message)
+    toast.error(error.message);
   }
-}
-
+};
 
   return (
     <div className='w-full flex justify-between items-center p-4 sm:p-6 sm:px-24 absolute top-0'>

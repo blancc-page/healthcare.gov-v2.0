@@ -31,7 +31,7 @@ export const register = async(req,res) =>{
 // When setting cookies in your auth controller
 res.cookie('authToken', token, {
     httpOnly: true,
-    secure: process.env.NODE_ENV, // true in development
+    secure: process.env.NODE_ENV === 'development' ? 'http//localhost:4000/' : 'https://healthcare-gov-backend.onrender.com', // true in development
     sameSite: 'lax', // or 'strict' in development
     maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
 });
@@ -86,7 +86,7 @@ export const login = async(req,res) => {
 const token = jwt.sign(
     { userId: user._id.toString() }, // Make sure this is the correct ID
     process.env.JWT_SECRET,
-    { expiresIn: '7d' }
+    { expiresIn: '5m' }
   );
   
   console.log("Token created with userId:", user._id.toString()); // Log what's stored in token
@@ -94,7 +94,7 @@ const token = jwt.sign(
 // When setting cookies in your auth controller
 res.cookie('authToken', token, {
     httpOnly: true,
-    secure: process.env.NODE_ENV, // true in development
+    secure: process.env.NODE_ENV === 'development' ? 'http//localhost:4000/' : 'https://healthcare-gov-backend.onrender.com', // true in development
     sameSite: 'lax', // or 'strict' in development
     maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
 });
@@ -113,8 +113,8 @@ export const logout = async (req,res) => {
     try {
         res.clearCookie('token', {
             httpOnly: true,
-            secure: process.env.NODE_ENV,
-            sameSite: process.env.NODE_ENV,
+            secure: process.env.NODE_ENV === 'development' ? 'http//localhost:4000/' : 'https://healthcare-gov-backend.onrender.com', // true in development
+            sameSite: process.env.NODE_ENV == 'development'
         })
 
         return res.json({success: true, message: "User Logged Out"})
