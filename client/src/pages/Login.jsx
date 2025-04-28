@@ -62,20 +62,20 @@ const onSubmitHandler = async (e) => {
             {state === 'Sign Up' && (<div className='mb-4 flex items-center gap-3 w-full px-5 py2.5 rounded-full bg-[#333a5c]'>
                 <img src={assets.person_icon} alt="" />
                 <input onChange={e => setName(e.target.value)} value={name} 
-                className='bg-transparent outline-none p-3' type="text" placeholder='Full Name' required />
+                className='bg-transparent outline-none p-3' type="text" placeholder='Full Name'   />
             </div>
             )}
             
 
             <div className='mb-4 flex items-center gap-3 w-full px-5 py2.5 rounded-full bg-[#333a5c]'>
                 <img src={assets.mail_icon} alt="" />
-                <input onChange={e => setEmail(e.target.value)} value={email} className='bg-transparent outline-none p-3' type="email" placeholder='Email Address' required />
+                <input onChange={e => setEmail(e.target.value)} value={email} className='bg-transparent outline-none p-3' type="email" placeholder='Email Address'   />
             </div>
 
             <div className='mb-4 flex items-center gap-3 w-full px-5 py2.5 rounded-full bg-[#333a5c]'>
                 <img src={assets.lock_icon} alt="" />
                 <input onChange={e => setPassword(e.target.value)} value={password} 
-                className='bg-transparent outline-none p-3' type="password" placeholder='Password' required />
+                className='bg-transparent outline-none p-3' type="password" placeholder='Password'   />
             </div>
 
             {state === 'Sign Up' ?

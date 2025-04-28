@@ -119,7 +119,7 @@ const onSubmitEmail = async (e) => {
               key={index}
               type="text"
               maxLength="1"
-              required
+               
               className='w-12 h-12 bg-[#333A5C] text-white text-center text-xl rounded-md'
               ref={el => inputRefs.current[index] = el}
               onInput={(e) => handleInput(e, index)}
@@ -140,7 +140,7 @@ const onSubmitEmail = async (e) => {
         <p className='text-center mb-6 text-indigo-300'>Enter your new password below.</p>
         <div className='mb-4 flex items-center gap-3 w-full px-5 py2.5 rounded-full bg-[#333A5c]'>
           <img src={assets.lock_icon} alt="" className='w-3 h-3'/>
-          <input type="password" placeholder='New Password' className='bg-transparent outline-none p-3 text-white' value={newPassword} onChange={e => setNewPassword(e.target.value)} required />
+          <input type="password" placeholder='New Password' className='bg-transparent outline-none p-3 text-white' value={newPassword} onChange={e => setNewPassword(e.target.value)}   />
         </div> 
         <button className='w-full py-2.5 bg-gradient-to-r from-indigo-500 to-indigo-900 text-white rounded-full mt-3'>Submit</button>
       </form>
