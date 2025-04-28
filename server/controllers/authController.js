@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import userModel from '../models/usermodel.js';
+import userModel from '../models/userModel.js';
 import transporter from '../config/nomdemailer.js';
 
 
