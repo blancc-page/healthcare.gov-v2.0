@@ -62,11 +62,9 @@ MODE=development
 
 ### 4. Run the app locally
 
-# In the server folder
+#### In the server folder
 npm run server
 
-# In the client folder
+#### In the client folder
 npm run dev
 
-### 🔗 Live Demo
-👉 healthcare-gov-frontend.onrender.com
