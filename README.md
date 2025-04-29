@@ -31,7 +31,7 @@ Healthcare.gov is a MERN-stack demo application that showcases a scalable, secur
 
 ### 1. Clone the repository
 
-```bash
+
 git clone https://github.com/yourusername/healthcare.gov.git
 cd healthcare.gov
 
@@ -42,6 +42,7 @@ npm install
 
 cd client
 npm install
+
 
 ### 3. Set up environment variables
 
