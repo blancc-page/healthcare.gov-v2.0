@@ -23,9 +23,6 @@ export const register = async(req,res) =>{
 
         await user.save();
 
-        console.log("New user created with ID:", user._id); // Log new user ID
-        console.log("New user ID type:", typeof user._id); // Log ID type
-
         const token = jwt.sign({id: user._id}, process.env.JWT_SECRET, {expiresIn: '5m'}); // OTP lifespan supposed to be shorter 
 
 // When setting cookies in your auth controller
@@ -45,7 +42,7 @@ res.cookie('authToken', token, {
         
         Your account is under the email: '${email}' and ID Number: '${idNum}'. \n Use these to login in.`
     }
-    console.log(`${name} has just registered. His / Her credentials are: ${email} and ${idNum} and your sender email is ${process.env.SENDER_EMAIL}`);
+
     await transporter.sendMail(mailOption);
     console.log("mail sent");
 
@@ -79,17 +76,12 @@ export const login = async(req,res) => {
             return res.json({success:false, message: 'Invalid password'})
         }
 
-        console.log("User found during login with ID:", user._id); // Log the user ID
-        console.log("User ID type:", typeof user._id); // Log the ID type
-
         // In your login controller
 const token = jwt.sign(
     { userId: user._id.toString() }, // Make sure this is the correct ID
     process.env.JWT_SECRET,
     { expiresIn: '5m' }
   );
-  
-  console.log("Token created with userId:", user._id.toString()); // Log what's stored in token
 
 // When setting cookies in your auth controller
 res.cookie('authToken', token, {
@@ -166,8 +158,6 @@ export const verifyEmail = async(req,res) => {
 
     const userId = req.user._id;
     const otp = req.body;
-    // console.log(otp, req.user.verifyOtp)
-    // console.log(userId);
 
     if(!userId || !otp){
         return res.json({success: false, message: 'Missing Details'});
@@ -181,8 +171,6 @@ export const verifyEmail = async(req,res) => {
         }
 
         if(user.verifyOtp === '' || user.verifyOtp !== req.body.otp){
-            console.log(user.verifyOtp)
-            console.log(req.body.otp)
             return res.json({success: false, message: 'Invalid OTP'});
         }
 
@@ -254,9 +242,6 @@ export const sendResetOtp = async (req, res) => {
         };
 
         await transporter.sendMail(mailOptions);
-        
-        // Logging (consider removing in development)
-        console.log(`Password reset OTP sent to ${email}: ${otp}`);
 
         return res.json({ 
             success: true, 

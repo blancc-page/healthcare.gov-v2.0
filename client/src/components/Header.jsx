@@ -1,14 +1,12 @@
 import React, { useContext, useEffect } from 'react'
 import { assets } from '../assets/assets'
 import { AppContext } from '../context/AppContext'
-import { useState } from 'react'
 import { toast } from 'react-toastify'
 
 
 const Header = () => {
 
-const [state, setState] = useState('Log In')
-const { isLoggedIn, userData } = useContext(AppContext)
+const { userData } = useContext(AppContext)
 
 const logInToast = () => {
   if(isLoggedIn){

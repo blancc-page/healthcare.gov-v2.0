@@ -13,8 +13,6 @@ const navigate = useNavigate()
 
 const {backendUrl, setIsLoggedIn, getUserData} = useContext(AppContext)
 
-console.log(backendUrl)
-
 const [state, setState] = useState('Sign Up')
 const [idNum, setIdNum] = useState('')
 const [name, setName] = useState('')
@@ -29,7 +27,7 @@ const onSubmitHandler = async (e) => {
       if (state === 'Sign Up') {
         const { data } = await axios.post(backendUrl + 'api/auth/register', { idNum, name, email, password });
         if (data.success) {
-          toast("Registration Successful");
+          toast("Registration Successful - Check you\'re mail 📫");
           setIsLoggedIn(true);
           getUserData()
           navigate('/');
@@ -39,7 +37,7 @@ const onSubmitHandler = async (e) => {
       } else {
         const { data } = await axios.post(backendUrl + 'api/auth/login', { email, password });
         if (data.success) {
-          toast("Login Successful");
+          toast("Login Successful 🎉");
           setIsLoggedIn(true);
           getUserData()
           navigate('/');
@@ -79,7 +77,7 @@ const onSubmitHandler = async (e) => {
 
             <div className='mb-4 flex items-center gap-3 w-full px-5 py2.5 rounded-full bg-[#333a5c]'>
                 <img src={assets.mail_icon} alt="" />
-                <input onChange={e => setEmail(e.target.value)} value={email} className='bg-transparent outline-none p-3' type="email" placeholder='Email Address'   />
+                <input onChange={e => setEmail(e.target.value)} value={email} className='bg-transparent outline-none p-3' type="text" placeholder='Email Address / National ID Number'   />
             </div>
 
             <div className='mb-4 flex items-center gap-3 w-full px-5 py2.5 rounded-full bg-[#333a5c]'>

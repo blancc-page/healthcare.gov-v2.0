@@ -46,7 +46,6 @@ const handlePaste = (e) => {
 }
 
 const onSubmitEmail = async (e) => {
-  console.log('Form submission handler called');
   e.preventDefault();
 
   try {
