@@ -77,7 +77,7 @@ const onSubmitHandler = async (e) => {
 
             <div className='mb-4 flex items-center gap-3 w-full px-5 py2.5 rounded-full bg-[#333a5c]'>
                 <img src={assets.mail_icon} alt="" />
-                <input onChange={e => setEmail(e.target.value)} value={email} className='bg-transparent outline-none p-3' type="text" placeholder='Email Address / National ID Number'   />
+                <input onChange={e => setEmail(e.target.value)} value={email} className='bg-transparent outline-none p-3' type="text" placeholder='Email Address'   />
             </div>
 
             <div className='mb-4 flex items-center gap-3 w-full px-5 py2.5 rounded-full bg-[#333a5c]'>

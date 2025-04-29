@@ -35,6 +35,7 @@ const logout = async () => {
     const { data } = await axios.post(backendUrl + 'api/auth/logout');
 
     if (data.success) { 
+      toast.success('Logged Out');
       // Clear any localStorage/sessionStorage
       localStorage.removeItem('user'); 
       localStorage.removeItem('token'); 
@@ -45,7 +46,6 @@ const logout = async () => {
       setUserData(null);
 
       navigate('/');
-      toast.success('Logged Out');
     } else {
       toast.error('Logout failed');
     }

@@ -6,7 +6,7 @@ import { toast } from 'react-toastify'
 
 const Header = () => {
 
-const { userData } = useContext(AppContext)
+const { userData, isLoggedIn } = useContext(AppContext)
 
 const logInToast = () => {
   if(isLoggedIn){
