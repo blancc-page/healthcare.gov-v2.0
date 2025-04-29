@@ -16,6 +16,7 @@ const {backendUrl, setIsLoggedIn, getUserData} = useContext(AppContext)
 console.log(backendUrl)
 
 const [state, setState] = useState('Sign Up')
+const [idNum, setIdNum] = useState('')
 const [name, setName] = useState('')
 const [email, setEmail] = useState('')
 const [password, setPassword] = useState('')
@@ -26,7 +27,7 @@ const onSubmitHandler = async (e) => {
       axios.defaults.withCredentials = true;
   
       if (state === 'Sign Up') {
-        const { data } = await axios.post(backendUrl + 'api/auth/register', { name, email, password });
+        const { data } = await axios.post(backendUrl + 'api/auth/register', { idNum, name, email, password });
         if (data.success) {
           toast("Registration Successful");
           setIsLoggedIn(true);
@@ -61,11 +62,18 @@ const onSubmitHandler = async (e) => {
         <p className='text-center text-sm mb-6 text-white'>{state === 'Sign Up' ? 'Create Your Account' : 'Login To Your Account'}</p>
 
         <form onSubmit={onSubmitHandler}>
-            {state === 'Sign Up' && (<div className='mb-4 flex items-center gap-3 w-full px-5 py2.5 rounded-full bg-[#333a5c]'>
-                <img src={assets.person_icon} alt="" />
-                <input onChange={e => setName(e.target.value)} value={name} 
-                className='bg-transparent outline-none p-3' type="text" placeholder='Full Name'   />
+            {state === 'Sign Up' && (
+            <><div className='mb-4 flex items-center gap-3 w-full px-5 py2.5 rounded-full bg-[#333a5c]'>
+              <img className='w-6 h-6' src={assets.fingerprint_icon} alt="" />
+              <input onChange={e => setIdNum(e.target.value)} value={idNum}
+                className='bg-transparent outline-none p-3' type="text" placeholder='National ID number' />
             </div>
+            
+            <div className='mb-4 flex items-center gap-3 w-full px-5 py2.5 rounded-full bg-[#333a5c]'>
+                <img src={assets.person_icon} alt="" />
+                <input onChange={e => setName(e.target.value)} value={name}
+                  className='bg-transparent outline-none p-3' type="text" placeholder='Full Name' />
+              </div></>
             )}
             
 
