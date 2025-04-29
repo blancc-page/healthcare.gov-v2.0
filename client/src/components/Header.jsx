@@ -6,8 +6,8 @@ import { toast } from 'react-toastify'
 
 const Header = () => {
 
-const { userData, isLoggedIn } = useContext(AppContext)
-
+const { userData, isLoggedIn, getUserData } = useContext(AppContext)
+getUserData()
 const logInToast = () => {
   if(isLoggedIn){
     toast('That feature is still in development')
@@ -15,6 +15,7 @@ const logInToast = () => {
     toast('You\'ll have to log in first')
   }
 }
+  
 
   return (
     <div className='flex flex-col items-center mt-20 px-4 text-center text-gray-800'>
